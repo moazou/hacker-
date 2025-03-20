@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="ar">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>⚠️ جهازك مخترق! ⚠️</title>
+    <style>
+        body {
+            background-color: black;
+            color: lime;
+            font-family: 'Courier New', monospace;
+            padding: 10px;
+            text-align: left;
+        }
+
+        .console {
+            background-color: black;
+            color: lime;
+            font-size: 16px;
+            padding: 20px;
+            height: 400px;
+            overflow: hidden;
+            border: 2px solid lime;
+            margin-top: 10px;
+            white-space: pre-line;
+        }
+
+        @keyframes blink {
+            0% { background-color: black; }
+            50% { background-color: red; }
+            100% { background-color: black; }
+        }
+
+        .warning {
+            font-size: 25px;
+            color: red;
+            font-weight: bold;
+            animation: blink 0.8s infinite;
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+    <h1 class="warning">⚠️ نظامك تحت الاختراق! ⚠️</h1>
+    <p id="status">🔄 جاري تحميل الفيروس...</p>
+    <div class="console" id="console"></div>
+
+    <script>
+        let messages = [
+            "[+] الاتصال بسيرفر الاختراق...",
+            "[+] تنفيذ exploit_0x1...",
+            "[+] الحصول على صلاحيات الجذر (root)...",
+            "[+] تحميل ملفات النظام...",
+            "[!] استخراج كلمات المرور...",
+            "[!] سرقة بيانات البصمة...",
+            "[!] تنزيل وحدات التحكم عن بعد...",
+            "[⚠] تخريب جميع الملفات...",
+            "[🔥] تفعيل وضع التدمير الذاتي..."
+        ];
+
+        let randomCode = [
+            "01101010 1100110 10101101 11011101 00011100",
+            "root@hacked:~$ sudo rm -rf /",
+            "ACCESS GRANTED: 192.168.1.1:8080",
+            "var malware = new Virus();",
+            "Injecting payload... [█████-----] 50%",
+            "Hashing passwords... SHA256(xxxxxxxx)",
+            "Encrypting system files... [DONE]",
+            "Hacker connected: [TOR-Node] 172.16.254.1",
+            "Compiling virus.exe... SUCCESS",
+            "Sending data to server... COMPLETE"
+        ];
+
+        let consoleBox = document.getElementById("console");
+        let statusText = document.getElementById("status");
+        let body = document.body;
+        let sound = new Audio('https://www.fesliyanstudios.com/play-mp3/4383'); // صوت مرعب
+
+        function startHack() {
+            let index = 0;
+            sound.loop = true;
+            sound.play();
+
+            let vibrateInterval = setInterval(() => {
+                if (navigator.vibrate) navigator.vibrate([200, 300, 200]); // اهتزاز الهاتف
+                body.style.backgroundColor = index % 2 === 0 ? "black" : "red";
+            }, 500);
+
+            let typingInterval = setInterval(() => {
+                if (index < messages.length) {
+                    consoleBox.innerHTML += messages[index] + "\n";
+                    index++;
+                } else {
+                    consoleBox.innerHTML += randomCode[Math.floor(Math.random() * randomCode.length)] + "\n";
+                }
+            }, 500);
+
+            setTimeout(() => {
+                clearInterval(vibrateInterval);
+                if (sound) sound.pause();
+                statusText.innerHTML = "🚨 النظام توقف عن العمل! إعادة التشغيل مطلوبة!";
+                consoleBox.innerHTML += "\n[❌] خطأ فادح: النظام لا يستجيب!";
+                body.style.backgroundColor = "black";
+            }, 10000);
+        }
+
+        setTimeout(startHack, 2000);
+    </script>
+</body>
+</html>
